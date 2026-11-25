@@ -1,0 +1,17 @@
+# Compiled binaries & objects
+*.o
+*.obj
+*.exe
+*.out
+bin/
+build/
+
+# IDE & Editor folders
+.vscode/
+.idea/
+*.suo
+*.user
+
+# OS-generated files
+.DS_Store
+Thumbs.db
