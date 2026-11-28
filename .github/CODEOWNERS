@@ -1,0 +1,27 @@
+# Global fallbacks and shared architecture (Member 4)
+*                           @DaniyalMumtaz2007
+include/Types.hpp           @DaniyalMumtaz2007
+.github/                    @DaniyalMumtaz2007
+
+# Member 1: Patient Triage & Intake
+include/TriageEngine.hpp    @AbdulWahid2007
+src/TriageEngine.cpp        @AbdulWahid2007
+tests/test_triage.cpp       @AbdulWahid2007
+
+# Member 2: Facility Navigation & Bot Routing
+include/HospitalGraph.hpp   @aylaeeman34-arch
+src/HospitalGraph.cpp       @aylaeeman34-arch
+tests/test_routing.cpp      @aylaeeman34-arch
+
+# Member 3: Capacity Forecasting & Equipment Tracking
+include/ResourceManager.hpp @Musnibaa
+src/ResourceManager.cpp     @Musnibaa
+tests/test_resource.cpp     @Musnibaa
+
+# Member 4: DES Engine, Directory & Integration
+include/Directory.hpp       @DaniyalMumtaz2007
+src/Directory.cpp           @DaniyalMumtaz2007
+include/EventQueue.hpp      @DaniyalMumtaz2007
+src/EventQueue.cpp          @DaniyalMumtaz2007
+tests/test_engine.cpp       @DaniyalMumtaz2007
+src/main.cpp                @DaniyalMumtaz2007
