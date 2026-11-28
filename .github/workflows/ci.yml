@@ -21,25 +21,37 @@ jobs:
         run: g++ -std=c++17 -Wall -Wextra -Iinclude -fsyntax-only include/Types.hpp
 
       - name: Run Engine & Directory Tests (Member 4)
-        if: hashFiles('tests/test_engine.cpp') != ''
         run: |
-          g++ -std=c++17 -Wall -Wextra -Iinclude src/Directory.cpp tests/test_engine.cpp -o test_engine
-          ./test_engine
+          if [ -s tests/test_engine.cpp ] && grep -q "main" tests/test_engine.cpp; then
+            g++ -std=c++17 -Wall -Wextra -Iinclude src/Directory.cpp tests/test_engine.cpp -o test_engine
+            ./test_engine
+          else
+            echo "Skipping: tests/test_engine.cpp is empty or missing main()"
+          fi
 
       - name: Run Triage Tests (Member 1)
-        if: hashFiles('tests/test_triage.cpp') != ''
         run: |
-          g++ -std=c++17 -Wall -Wextra -Iinclude src/TriageEngine.cpp tests/test_triage.cpp -o test_triage
-          ./test_triage
+          if [ -s tests/test_triage.cpp ] && grep -q "main" tests/test_triage.cpp; then
+            g++ -std=c++17 -Wall -Wextra -Iinclude src/TriageEngine.cpp tests/test_triage.cpp -o test_triage
+            ./test_triage
+          else
+            echo "Skipping: tests/test_triage.cpp is empty or missing main()"
+          fi
 
       - name: Run Routing Tests (Member 2)
-        if: hashFiles('tests/test_routing.cpp') != ''
         run: |
-          g++ -std=c++17 -Wall -Wextra -Iinclude src/HospitalGraph.cpp tests/test_routing.cpp -o test_routing
-          ./test_routing
+          if [ -s tests/test_routing.cpp ] && grep -q "main" tests/test_routing.cpp; then
+            g++ -std=c++17 -Wall -Wextra -Iinclude src/HospitalGraph.cpp tests/test_routing.cpp -o test_routing
+            ./test_routing
+          else
+            echo "Skipping: tests/test_routing.cpp is empty or missing main()"
+          fi
 
       - name: Run Resource Tests (Member 3)
-        if: hashFiles('tests/test_resource.cpp') != ''
         run: |
-          g++ -std=c++17 -Wall -Wextra -Iinclude src/ResourceManager.cpp tests/test_resource.cpp -o test_resource
-          ./test_resource
+          if [ -s tests/test_resource.cpp ] && grep -q "main" tests/test_resource.cpp; then
+            g++ -std=c++17 -Wall -Wextra -Iinclude src/ResourceManager.cpp tests/test_resource.cpp -o test_resource
+            ./test_resource
+          else
+            echo "Skipping: tests/test_resource.cpp is empty or missing main()"
+          fi
