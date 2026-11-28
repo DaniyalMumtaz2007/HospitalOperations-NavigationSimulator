@@ -1,0 +1,45 @@
+name: C++ Build & Test Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install g++
+        run: sudo apt-get update && sudo apt-get install -y g++
+
+      - name: Verify Types.hpp syntax
+        run: g++ -std=c++17 -Wall -Wextra -Iinclude -fsyntax-only include/Types.hpp
+
+      - name: Run Engine & Directory Tests (Member 4)
+        if: hashFiles('tests/test_engine.cpp') != ''
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Iinclude src/Directory.cpp tests/test_engine.cpp -o test_engine
+          ./test_engine
+
+      - name: Run Triage Tests (Member 1)
+        if: hashFiles('tests/test_triage.cpp') != ''
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Iinclude src/TriageEngine.cpp tests/test_triage.cpp -o test_triage
+          ./test_triage
+
+      - name: Run Routing Tests (Member 2)
+        if: hashFiles('tests/test_routing.cpp') != ''
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Iinclude src/HospitalGraph.cpp tests/test_routing.cpp -o test_routing
+          ./test_routing
+
+      - name: Run Resource Tests (Member 3)
+        if: hashFiles('tests/test_resource.cpp') != ''
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Iinclude src/ResourceManager.cpp tests/test_resource.cpp -o test_resource
+          ./test_resource
